@@ -11,6 +11,7 @@ describe("input tests", () => {
         const nameField = getByTestId("name");
         expect(nameField).toBeTruthy();
     })
+    
     it("Add entry button renders", () => {
         const addEntry = jest.fn();
         const component = render(<NewGridEntryInput addEntry= {addEntry}/>)
