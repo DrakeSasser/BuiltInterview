@@ -5,16 +5,16 @@ export interface ILoansState {
     loanList: IGridData[]
 }
 
-const initialState = {
+export const initialLoanState = {
     loanList: []
 }
 
-export const loanReducer = (state:ILoansState = initialState, action:AddLoanAction) => {
+export const loanReducer = (state:ILoansState = initialLoanState, action:AddLoanAction) => {
     switch(action.type){
         case "ADD_LOAN": {
-            return {...state, loans: [...state.loanList, action.payload]}
+            return {...state, loanList: [...state.loanList, action.payload]}
         }
         default:
-        return state
+            return {...state}
     }
 }

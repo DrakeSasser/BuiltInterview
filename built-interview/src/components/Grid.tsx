@@ -1,26 +1,35 @@
-import { AgGridReact } from 'ag-grid-react';
+import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import { ColDef, ColGroupDef } from 'ag-grid-community';
+import { Component } from 'react';
 import { IGridData } from '../interfaces/IGridData';
-import { GridEntryType } from '../enums/GridEntryType';
+import { ColDef } from 'ag-grid-community';
 
-export class Grid extends AgGridReact {
-  columnDefs: (ColDef | ColGroupDef)[] | undefined;
-  test: IGridData[];
-  rowData: any[] | undefined;
-  
-    constructor (props: any) {
-        super(props);
-        this.test = [{name: "DrakeLoan", type: GridEntryType.Loan, value: 15_000, customer: "Drake"}, {name: "BecaBudget", type: GridEntryType.Budget, value: 1, customer: "Beca"}]
-        this.columnDefs = [
-                {headerName: 'Name', field: 'name', sortable: true, filter: true, checkboxSelection: true},
-                {headerName: 'Type', field: 'type', sortable: true, filter: true},
-                {headerName: 'Value', field: 'value', sortable: true, filter: true},
-                {headerName: 'Customer', field: 'customer', sortable: true, filter: true}
-        ];
-        this.rowData= props.rowData;
+interface GridProps extends AgGridReactProps {
+
+}
+
+interface GridState{
+  columnDefs: ColDef[];
+  rowData: IGridData[];
+}
+
+export class Grid extends Component<GridProps> {
+  state = {
+    columnDefs: [
+      {headerName: 'Name', field: 'name', sortable: true, filter: true, checkboxSelection: true},
+      {headerName: 'Type', field: 'type', sortable: true, filter: true},
+      {headerName: 'Value', field: 'value', sortable: true, filter: true},
+      {headerName: 'Customer', field: 'customer', sortable: true, filter: true}
+    ],
+    rowData: this.props.rowData,
+  }
+   
+  componentDidUpdate(prevProps: GridProps, prevState: GridState): void {
+    if (this.props.rowData !== prevProps.rowData) {
+      this.setState({rowData: this.props.rowData})
     }
+  }
 
     render() {
         return (
@@ -31,8 +40,8 @@ export class Grid extends AgGridReact {
               height:600
             }}>
               <AgGridReact
-              columnDefs = {this.columnDefs}
-              rowData = {this.rowData}
+              columnDefs = {this.state.columnDefs}
+              rowData = {this.state.rowData}
               rowSelection="multiple"
               />
             </div>

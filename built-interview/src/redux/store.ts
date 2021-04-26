@@ -1,7 +1,8 @@
 import { combineReducers, createStore } from 'redux'
-import { budgetReducer } from './ducks/budgetReducer'
-import { collateralReducer } from './ducks/collateralReducer'
-import { loanReducer } from './ducks/loanReducer'
+import { budgetReducer, initialBudgetState } from './ducks/budgetReducer'
+import { collateralReducer, initialCollateralState } from './ducks/collateralReducer'
+import { initialLoanState, loanReducer } from './ducks/loanReducer'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const reducer = combineReducers({
     budget: budgetReducer,
@@ -9,6 +10,12 @@ const reducer = combineReducers({
     loan: loanReducer
 });
 
-const store = createStore(reducer);
+const initialState = {
+    budget: initialBudgetState,
+    collateral: initialCollateralState,
+    loan: initialLoanState,
+}
+export type AppState = typeof initialState;
+const store = createStore(reducer, initialState as any, composeWithDevTools());
 
 export default store;

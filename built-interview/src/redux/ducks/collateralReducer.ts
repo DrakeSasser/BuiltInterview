@@ -5,16 +5,16 @@ export interface ICollateralState {
     collateralList: IGridData[]
 }
 
-const initialState = {
+export const initialCollateralState = {
     collateralList: []
 }
 
-export const collateralReducer = (state:ICollateralState = initialState, action:AddColateralAction) => {
+export const collateralReducer = (state:ICollateralState = initialCollateralState, action:AddColateralAction) => {
     switch(action.type){
         case "ADD_COLLATERAL": {
-            return {...state, collateral: [...state.collateralList, action.payload]}
+            return {...state, collateralList: [...state.collateralList, action.payload]}
         }
         default:
-        return state
+            return {...state}
     }
 }

@@ -5,16 +5,16 @@ export interface IBudgetState {
     budgetList: IGridData[]
 }
 
-const initialState = {
+export const initialBudgetState = {
     budgetList: []
 }
 
-export const budgetReducer = (state:IBudgetState = initialState, action:AddBudgetAction) => {
+export const budgetReducer = (state:IBudgetState = initialBudgetState, action:AddBudgetAction) => {
     switch(action.type){
         case "ADD_BUDGET": {
             return {...state, budgetList: [...state.budgetList, action.payload]}
         }
         default:
-        return state
+            return {...state}
     }
 }

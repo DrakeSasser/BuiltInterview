@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react'
+import { useDispatch } from 'react-redux';
 import { GridEntryType } from '../enums/GridEntryType';
 import { IGridData } from '../interfaces/IGridData'
 
@@ -7,6 +8,7 @@ interface InputProps {
 }
 
 export const NewGridEntryInput:React.FC<InputProps> = ({addEntry: addEntry}) => {
+    const dispatch = useDispatch();
     const [name, setName] = React.useState("");
     const [value, setValue] = React.useState(0);
     const [customer, setCustomer] = React.useState("");
@@ -54,7 +56,7 @@ export const NewGridEntryInput:React.FC<InputProps> = ({addEntry: addEntry}) => 
         <label htmlFor="Collateral">Collateral</label><br></br>
         <input onChange={updateType} type="radio" id="Loan" name="entryType" value={GridEntryType.Loan}></input>
         <label htmlFor="Loan">Loan</label><br></br>
-        <button onClick={onAddNoteClick}>Add entry</button>
+        <button onClick={onAddNoteClick} data-testid= {"button"}>Add entry</button>
     </div>
     )
 }
