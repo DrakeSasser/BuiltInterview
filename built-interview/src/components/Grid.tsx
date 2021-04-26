@@ -17,10 +17,10 @@ interface GridState{
 export class Grid extends Component<GridProps> {
   state = {
     columnDefs: [
-      {headerName: 'Name', field: 'name', sortable: true, filter: true, checkboxSelection: true},
-      {headerName: 'Type', field: 'type', sortable: true, filter: true},
-      {headerName: 'Value', field: 'value', sortable: true, filter: true},
-      {headerName: 'Customer', field: 'customer', sortable: true, filter: true}
+      {headerName: 'Name', field: 'name', sortable: true, filter: true, editable: true, checkboxSelection: true},
+      {headerName: 'Type', field: 'type', sortable: true, filter: true, editable: true},
+      {headerName: 'Value', field: 'value', sortable: true, filter: true, editable: true},
+      {headerName: 'Customer', field: 'customer', sortable: true, filter: true, editable: true}
     ],
     rowData: this.props.rowData,
   }

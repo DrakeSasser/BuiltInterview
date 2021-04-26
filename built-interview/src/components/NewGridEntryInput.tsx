@@ -8,7 +8,6 @@ interface InputProps {
 }
 
 export const NewGridEntryInput:React.FC<InputProps> = ({addEntry: addEntry}) => {
-    const dispatch = useDispatch();
     const [name, setName] = React.useState("");
     const [value, setValue] = React.useState(0);
     const [customer, setCustomer] = React.useState("");
@@ -44,7 +43,7 @@ export const NewGridEntryInput:React.FC<InputProps> = ({addEntry: addEntry}) => 
     return (
     <div>
         <h3>Name</h3>
-        <input onChange={updateName} value ={name} type="text" name="name" placeholder="Name"/>
+        <input onChange={updateName} data-testid= {"name"} value ={name} type="text" name="name" placeholder="Name"/>
         <h3>Value</h3>
         <input onChange={updateValue} value ={value} type="number" name="value" placeholder="Value"/>
         <h3>Customer</h3>
